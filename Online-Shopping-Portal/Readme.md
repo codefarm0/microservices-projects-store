@@ -52,6 +52,8 @@
 
 ### 👉 API Gateway
 
+### Creating and integrating Messaging System - RabbitMQ/ActiveMQ
+
 ### 👉 Creating the front end to integrate all the above services - React/Angular
 
 
