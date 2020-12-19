@@ -30,7 +30,11 @@
 
 * Securing the endpoints 
 
-### 👉 Payment service
+### 👉 Mocked Payment service
+
+* Creating mocked payment service using WIREMOCK (to be called by "Payment Processing service")
+
+### 👉 Payment Processing service
 
 * Writing Endpoints
 
@@ -44,15 +48,19 @@
 
 * Securing the endpoints 
 
-### 👉 History service
+### 👉 Applying Distributed tracing
 
-### 👉 Service registry and discovery
+### 👉 Integrating the centralized configuration management
 
-### 👉 Load Balancer
+### 👉 Applying Service registry and discovery
 
-### 👉 API Gateway
+### 👉 Applying Load Balancer
 
-### Creating and integrating Messaging System - RabbitMQ/ActiveMQ
+### 👉 Applying API Gateway
+
+### 👉 Creating and integrating Messaging System - RabbitMQ/ActiveMQ
+
+### 👉 Integrating KAFKA in the architecture
 
 ### 👉 Creating the front end to integrate all the above services - React/Angular
 
