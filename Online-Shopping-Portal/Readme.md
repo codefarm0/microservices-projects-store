@@ -52,6 +52,12 @@
 
 ### 👉 Applying Distributed tracing
 
+* Spring cloud sleuth
+
+* Zipkin
+
+### 👉 Spring Boot Admin for managing and monitoring of all the Spring Boot applications
+
 ### 👉 Integrating the centralized configuration management
 
 ### 👉 Applying Service registry and discovery
