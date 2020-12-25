@@ -1,6 +1,6 @@
 # Online Shopping Portal Project: Complete explanation of each and every component
 
-### 👉 Course Plan
+### 👉 [Course Plan](https://youtu.be/Uw8Qicia3H0)
 
 ### 👉 Project Architecture Overview
 
