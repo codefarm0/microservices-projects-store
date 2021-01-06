@@ -2,17 +2,25 @@
 
 ### 👉 [Course Plan](https://youtu.be/Uw8Qicia3H0)
 
-### 👉 Project Architecture Overview
+### 👉 [Project Architecture Overview](https://youtu.be/nG_zzfubezA)
 
 ### 👉 Product service
 
 * Writing Endpoints
 
-* Integrating actuator services for monitoring health
+* Integration with MongoDB
 
-* Integrating Circuit Breaker - Spring cloud circuit breaker - resilience4j
+* Profiles in spring boot (latest v2.4+)
 
-* Integrating Database - MongoDB
+* Exception Handling
+
+* Lombok - removing the bolierplate code by adding simple annotations
+
+* Centralized logging with the help of filters
+
+* Integrating actuator services for monitoring purpose
+
+* Integrating Circuit Breaker
 
 * Integrating Swagger for documentation and interaction with service
 
