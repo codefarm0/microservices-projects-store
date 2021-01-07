@@ -2,6 +2,7 @@ package com.greenlearner.product.controller;
 
 import com.greenlearner.product.dto.Product;
 import com.greenlearner.product.service.ProductService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -14,12 +15,10 @@ import java.util.List;
  * @author - GreenLearner(https://www.youtube.com/c/greenlearner)
  */
 
+@Slf4j
 @RestController
 @RequestMapping("/v1")
 public class ProductController {
-
-    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
-
     private ProductService productService;
 
     public ProductController(ProductService productService) {
@@ -31,7 +30,7 @@ public class ProductController {
 
         String status = productService.addProduct(product);
 
-        logger.info("Product added status - {}", status);
+        log.info("Product added status - {}", status);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(product);
     }

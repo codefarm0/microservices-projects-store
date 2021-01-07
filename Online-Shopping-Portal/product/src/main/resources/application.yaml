@@ -4,3 +4,8 @@ server:
 spring:
   application:
     name: Product Microservice
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: shopping
