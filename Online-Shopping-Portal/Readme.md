@@ -6,15 +6,15 @@
 
 ### 👉 Product service
 
-* Writing Endpoints
+* [Writing Endpoints](https://youtu.be/BcwWyQlZNB8)
 
 * Integration with MongoDB
 
-* Profiles in spring boot (latest v2.4+)
+* Let's speed up the coding with Lombok & Codota
 
 * Exception Handling
 
-* Lombok - removing the bolierplate code by adding simple annotations
+* Profiles in spring boot (latest v2.4+)
 
 * Centralized logging with the help of filters
 
