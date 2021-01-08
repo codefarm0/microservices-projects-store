@@ -8,11 +8,13 @@
 
 * [Writing Endpoints](https://youtu.be/BcwWyQlZNB8)
 
-* Integration with MongoDB
+* [Integration with MongoDB](https://youtu.be/o9GjYJHlUx4)
 
 * Let's speed up the coding with Lombok & Codota
 
-* Exception Handling
+* REST API Data validation
+
+* Custom Exception Handling
 
 * Profiles in spring boot (latest v2.4+)
 
