@@ -10,9 +10,9 @@
 
 * [Integration with MongoDB](https://youtu.be/o9GjYJHlUx4)
 
-* Let's speed up the coding with Lombok & Codota
+* [Let's speed up the coding with Lombok & Codota](https://youtu.be/ZVJ7dLBu3GM)
 
-* REST API Data validation
+* [REST API Data validation](https://youtu.be/_RiyhX3wyvc)
 
 * Custom Exception Handling
 
