@@ -9,3 +9,9 @@ spring:
       host: localhost
       port: 27017
       database: shopping
+
+product:
+  currencies:
+    - INR
+    - USD
+    - EUR
