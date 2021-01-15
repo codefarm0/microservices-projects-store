@@ -5,3 +5,7 @@ product:
     - EUR
     - AUD
     - HKD
+
+spring:
+  profiles:
+    active: test
