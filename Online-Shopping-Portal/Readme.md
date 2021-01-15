@@ -14,7 +14,11 @@
 
 * [REST API Data validation](https://youtu.be/_RiyhX3wyvc)
 
-* Custom Exception Handling
+* [Custom Exception Handling](https://youtu.be/qg8Zc8aJJso)
+
+* [Hot Code Swapping | Auto generate Id in MongoDB](https://youtu.be/OtOW0rrq5cg)
+
+* [Working on Configuration](https://youtu.be/E8AHrK-5ZSw)
 
 * Profiles in spring boot (latest v2.4+)
 
