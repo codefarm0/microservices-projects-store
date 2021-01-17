@@ -20,7 +20,7 @@
 
 * [Working on Configuration](https://youtu.be/E8AHrK-5ZSw)
 
-* Profiles in spring boot (latest v2.4+)
+* [Profiles in spring boot (latest v2.4+)](https://youtu.be/mnIzMZ9YSfE)
 
 * Centralized logging with the help of filters
 
@@ -31,6 +31,18 @@
 * Integrating Swagger for documentation and interaction with service
 
 * Securing the endpoints 
+
+### Spring Boot Admin (Very Important for monitoring purposes)
+
+Before knowing this I was using actuators only for 'health' and 'info' only but this spring boot admin surprised me. I hope it will be helpful for some of you too.
+
+### 👉 Integrating the centralized configuration management
+
+### 👉 Applying Service registry and discovery
+
+### 👉 Applying Load Balancer
+
+### 👉 Applying API Gateway
 
 ### 👉 Order service
 
@@ -69,16 +81,6 @@
 * Spring cloud sleuth
 
 * Zipkin
-
-### 👉 Spring Boot Admin for managing and monitoring of all the Spring Boot applications
-
-### 👉 Integrating the centralized configuration management
-
-### 👉 Applying Service registry and discovery
-
-### 👉 Applying Load Balancer
-
-### 👉 Applying API Gateway
 
 ### 👉 Creating and integrating Messaging System - RabbitMQ/ActiveMQ
 
