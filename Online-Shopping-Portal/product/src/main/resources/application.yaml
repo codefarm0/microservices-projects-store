@@ -10,7 +10,7 @@ spring:
       port: 27017
       database: shopping
   profiles:
-    active: prod
+    active: local
 
 product:
   currencies:
@@ -19,12 +19,12 @@ product:
     - EUR
 
 ---
-server:
-  port: 9094
-
 spring:
   config:
     activate:
       on-profile:
-        - prod
+        - local
+  application:
+    name: Product Microservice(Local Env)
+
 

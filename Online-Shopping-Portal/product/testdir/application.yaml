@@ -6,6 +6,6 @@ product:
     - AUD
     - HKD
 
-spring:
-  profiles:
-    active: test
+#spring:
+#  profiles:
+#    active: test
