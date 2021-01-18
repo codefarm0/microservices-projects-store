@@ -18,11 +18,30 @@ logging:
 #    path: d:\logs  #spring.log
   logback:
     rollingpolicy:
-      max-file-size: 50KB
-  level:
-    root: TRACE
+      max-file-size: 10MB
+#  level:
+#    root: INFO
 
+# actuator specific
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+  health:
+    mongo:
+      enabled: true
+
+info:
+  app:
+    name: Product Microservice
+    version: 1.0
+    desccription: Add and retrieve product information
 
 product:
   currencies:
