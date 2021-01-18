@@ -1,9 +1,11 @@
 package com.greenlearner.product.filters;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.greenlearner.product.dto.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.TeeOutputStream;
-import org.springframework.core.annotation.Order;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -12,28 +14,60 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 import java.io.*;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * @author - GreenLearner(https://www.youtube.com/c/greenlearner)
  */
 @Component
 @Slf4j
-@Order(1)
+//@Order(1)
 public class RequestResponseLoggers implements Filter {
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
-        MyCustomHttpRequestWrapper requestWrapper = new MyCustomHttpRequestWrapper((HttpServletRequest) request);
-        log.info("Requeust URI: {}", requestWrapper.getRequestURI());
-        log.info("Requeust Method: {}", requestWrapper.getMethod());
-        log.info("Requeust Body: {}", new String(requestWrapper.getByteArray()).replaceAll("\n", " "));
+        //password
+        //ssn, pan, aadhar
+        //personal
 
-        MyCustomHttpResponseWrapper responseWrapper = new MyCustomHttpResponseWrapper((HttpServletResponse)response);
+
+        MyCustomHttpRequestWrapper requestWrapper = new MyCustomHttpRequestWrapper((HttpServletRequest) request);
+
+        String uri = requestWrapper.getRequestURI();
+        log.info("Requeust URI: {}", uri);
+
+        log.info("Requeust Method: {}", requestWrapper.getMethod());
+        String requestData = new String(requestWrapper.getByteArray()).replaceAll("\n", " ");
+
+        if("/v1/addProduct".equalsIgnoreCase(uri)){
+            Product product = objectMapper.readValue(requestData, Product.class);
+
+            product.setCurrency("****");
+
+            requestData = objectMapper.writeValueAsString(product);
+        }
+
+        log.info("Requeust Body: {}", requestData);
+
+        MyCustomHttpResponseWrapper responseWrapper = new MyCustomHttpResponseWrapper((HttpServletResponse) response);
 
         chain.doFilter(requestWrapper, responseWrapper);
 
+        String responseResult = new String(responseWrapper.getBaos().toByteArray());
+        if("/v1/addProduct".equalsIgnoreCase(uri)){
+            Product product = objectMapper.readValue(responseResult, Product.class);
+
+            product.setCurrency("****");
+
+            responseResult = objectMapper.writeValueAsString(product);
+        }
         log.info("Response status - {}", responseWrapper.getStatus());
-        log.info("Response Body - {}", new String(responseWrapper.getBaos().toByteArray()));
+        log.info("Response Body - {}", responseResult);
     }
 
 

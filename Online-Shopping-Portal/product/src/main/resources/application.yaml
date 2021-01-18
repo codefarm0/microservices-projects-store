@@ -12,6 +12,18 @@ spring:
   profiles:
     active: local
 
+logging:
+  file:
+    name: d:\logs\product.log
+#    path: d:\logs  #spring.log
+  logback:
+    rollingpolicy:
+      max-file-size: 50KB
+  level:
+    root: TRACE
+
+
+
 product:
   currencies:
     - INR
