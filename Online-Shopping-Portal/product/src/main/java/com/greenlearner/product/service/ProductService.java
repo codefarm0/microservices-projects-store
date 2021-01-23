@@ -25,8 +25,10 @@ public class ProductService {
     private ProductConfiguration productConfiguration;
 
     public String addProduct(Product product) {
-        log.info("adding product");
+        log.info("[info]adding product");
         if (product.getPrice() == 0 && product.getDiscount() > 0) {
+            log.debug("[debug]something is wrong with product price");
+            log.warn("[warn]something is wrong with product price");
             throw new OfferNotValidException("No discount is allowed at 0 product price");
         }
 
