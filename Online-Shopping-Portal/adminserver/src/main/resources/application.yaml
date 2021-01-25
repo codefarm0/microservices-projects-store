@@ -1,0 +1,20 @@
+server:
+  port: 8081
+
+spring:
+  mail:
+    host: smtp.mailtrap.io
+    port: 2525
+    username: d5d8f0cc93a534
+    password: ad49129b50434c
+    test-connection: true
+  boot:
+    admin:
+      notify:
+        mail:
+          to:
+            - arvindakhilesh@gmail.com
+            - whytechnology01@gmail.com
+          ignore-changes:
+            - ''
+

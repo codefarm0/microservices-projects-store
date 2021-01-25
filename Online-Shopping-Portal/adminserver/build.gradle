@@ -18,6 +18,7 @@ ext {
 
 dependencies {
 	implementation 'de.codecentric:spring-boot-admin-starter-server'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
