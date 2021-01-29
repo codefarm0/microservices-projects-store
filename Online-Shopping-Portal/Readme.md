@@ -24,7 +24,14 @@
 
 * Centralized logging with the help of filters
 
-* Integrating actuator services for monitoring purpose
+     - [Centralized Logging of All the Endpoints](https://youtu.be/430hP6HesDA)
+
+     - [Filtering Requests & Masking the Data Before Logging](https://youtu.be/g30FRzuTHaY)
+
+     - [Log Configuration | Externalizing logs to file](https://youtu.be/PZ3WLTAWZlI)
+
+
+* [Integrating actuator services for monitoring purpose](https://youtu.be/z91y2_56toY)
 
 * Integrating Circuit Breaker
 
@@ -35,6 +42,15 @@
 ### Spring Boot Admin (Very Important for monitoring purposes)
 
 Before knowing this I was using actuators only for 'health' and 'info' only but this spring boot admin surprised me. I hope it will be helpful for some of you too.
+
+  * [Setting Up Spring Admin Server and Client](https://youtu.be/ERzE_5OT9C4)
+   
+  * [How to Change Log Level At Run-Time](https://youtu.be/1MGFmvnvozQ)
+   
+  * [How to Register Multiple Instances with SB Admin Server](https://youtu.be/jGfws1CKVYQ)
+   
+  * [Notification When App Status Changes in SB Admin Server](https://youtu.be/LWKiuzHkqzI)
+
 
 ### 👉 Integrating the centralized configuration management
 
