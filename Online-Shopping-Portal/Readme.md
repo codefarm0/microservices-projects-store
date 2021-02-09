@@ -67,7 +67,7 @@ Before knowing this I was using actuators only for 'health' and 'info' only but 
   
   * [Customizing User Interface](https://youtu.be/JoCGWqYzt4U)
   
-  * [Review - What's covered and What's pending?](https://youtu.be/POyzAXpPpA4)
+  * [Review | Next Step](https://youtu.be/POyzAXpPpA4)
 
 
 ### 👉 Integrating the centralized configuration management
