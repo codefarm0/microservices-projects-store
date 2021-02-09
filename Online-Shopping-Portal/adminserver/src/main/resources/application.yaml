@@ -5,11 +5,22 @@ spring:
   mail:
     host: smtp.mailtrap.io
     port: 2525
-    username: d5d8f0cc93a534
-    password: ad49129b50434c
+    username: 0557eeed891c4a
+    password: 729f4207a0d043
     test-connection: true
   boot:
     admin:
+      ui:
+        brand: "<img src= 'assets/img/logo.png'><span> Green Learner Services</span>"
+        title: 'Green Learner Services for Online Shopping Portal'
+        login-icon: 'assets/img/logo.png'
+        available-languages:
+          - en
+          - fr
+          - hi
+        view-settings:
+          - name: 'about'
+            enabled: false
       notify:
         mail:
           to:
