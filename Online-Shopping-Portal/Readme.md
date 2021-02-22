@@ -33,9 +33,21 @@
 
 * [Integrating actuator services for monitoring purpose](https://youtu.be/z91y2_56toY)
 
-* Integrating Circuit Breaker
+* [Integrating Circuit Breaker - Analysis](https://youtu.be/_pEkMese8Jc)
 
-* Integrating Swagger for documentation and interaction with service
+* [Integrating Swagger for documentation - Basic](https://youtu.be/joSaFbvwKzI)
+
+* [Integrating Swagger for documentation - Advance](https://youtu.be/BBCvIvV3IzY)
+
+* Writting Unit test cases
+
+* Writing Integration test cases
+
+* Integrating Code Coverage - JaCoCo
+
+* Static Code Analysis with Sonarqube
+
+* Verifying Code Coverage with Mutation testing
 
 * Securing the endpoints 
 
@@ -50,6 +62,12 @@ Before knowing this I was using actuators only for 'health' and 'info' only but 
   * [How to Register Multiple Instances with SB Admin Server](https://youtu.be/jGfws1CKVYQ)
    
   * [Notification When App Status Changes in SB Admin Server](https://youtu.be/LWKiuzHkqzI)
+  
+  * [Data Persistence & Clustering with Hazelcast](https://youtu.be/fIj7BSpfLqU)
+  
+  * [Customizing User Interface](https://youtu.be/JoCGWqYzt4U)
+  
+  * [Review | Next Step](https://youtu.be/POyzAXpPpA4)
 
 
 ### 👉 Integrating the centralized configuration management
