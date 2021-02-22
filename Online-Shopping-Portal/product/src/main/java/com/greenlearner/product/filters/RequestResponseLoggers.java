@@ -2,6 +2,7 @@ package com.greenlearner.product.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.greenlearner.product.dto.Product;
+import com.greenlearner.product.dto.ProductResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.TeeOutputStream;
@@ -60,11 +61,11 @@ public class RequestResponseLoggers implements Filter {
 
         String responseResult = new String(responseWrapper.getBaos().toByteArray());
         if("/v1/addProduct".equalsIgnoreCase(uri)){
-            Product product = objectMapper.readValue(responseResult, Product.class);
+            ProductResponse productResponse = objectMapper.readValue(responseResult, ProductResponse.class);
 
-            product.setCurrency("****");
+//            product.setCurrency("****");
 
-            responseResult = objectMapper.writeValueAsString(product);
+            responseResult = objectMapper.writeValueAsString(productResponse);
         }
         log.info("Response status - {}", responseWrapper.getStatus());
         log.info("Response Body - {}", responseResult);
