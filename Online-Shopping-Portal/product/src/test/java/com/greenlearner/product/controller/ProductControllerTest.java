@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -98,20 +100,77 @@ class ProductControllerTest {
 
         when(productRepository.save(any(Product.class))).thenReturn(product);
 
-        mockMvc.perform(post("/v1/addProduct").content("{\n" +
+        mockMvc.perform(post("/v1/addProduct")
+                .content("{\n" +
 //                "  \"name\" : \"Inner enginnering\",\n" +
-                "   \"category\": {\n" +
-                "        \"id\": 321,\n" +
-                "        \"name\": \"yoga\",\n" +
-                "        \"brand\": \"Isha Foundation\"\n" +
-                "    },\n" +
-                "    \"price\": 100,\n" +
-                "    \"currency\": \"INR\",\n" +
-                "    \"discount\": 10,\n" +
-                "    \"discountDescription\": \" Year end sale offer\"\n" +
-                "}").contentType("application/json")).andExpect(status().isBadRequest())
+                        "   \"category\": {\n" +
+                        "        \"id\": 321,\n" +
+                        "        \"name\": \"yoga\",\n" +
+                        "        \"brand\": \"Isha Foundation\"\n" +
+                        "    },\n" +
+                        "    \"price\": 100,\n" +
+                        "    \"currency\": \"INR\",\n" +
+                        "    \"discount\": 10,\n" +
+                        "    \"discountDescription\": \" Year end sale offer\"\n" +
+                        "}")
+                .contentType("application/json")).andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status", is("BAD_REQUEST")))
                 .andExpect(jsonPath("$.errors", hasSize(1)))
                 .andExpect(jsonPath("$.errors[0]", is("name : Product name should not be null")));
+    }
+
+    @Test
+    void updateProduct() throws Exception {
+        Product product = new Product();
+        product.setId("some-random-id");
+        product.setName("Mi TV");
+        product.setPrice(10000.0);
+        product.setDiscount(10);
+        product.setCurrency("INR");
+
+        when(productRepository.findById(anyString())).thenReturn(Optional.of(product));
+
+        Product newProduct = new Product();
+        newProduct.setId(product.getId());
+        newProduct.setName("Mi TV New");
+
+        when(productRepository.save(any(Product.class))).thenReturn(newProduct);
+
+        mockMvc.perform(put("/v1/productUpdate")
+                .content("{\n" +
+                        "        \"id\": \"some-random-id\",\n" +
+                        "  \"name\" : \"Inner enginnering\",\n" +
+                        "   \"category\": {\n" +
+                        "        \"id\": 321,\n" +
+                        "        \"name\": \"yoga\",\n" +
+                        "        \"brand\": \"Isha Foundation\"\n" +
+                        "    },\n" +
+                        "    \"price\": 100,\n" +
+                        "    \"currency\": \"INR\",\n" +
+                        "    \"discount\": 10,\n" +
+                        "    \"discountDescription\": \" Year end sale offer\"\n" +
+                        "}")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json("{\"status\":\"SUCCESS\",\"message\":\"Product Updated - Mi TV New\"}"));
+    }
+
+    @Test
+    void listProducts() throws Exception {
+        Product p1 = new Product();
+        p1.setId("123");
+        p1.setName("Mi TV New");
+
+        Product p2 = new Product();
+        p2.setId("321");
+        p2.setName("Nexon");
+
+        when(productRepository.findAll()).thenReturn(List.of(p1, p2));
+        mockMvc.perform(get("/v1/productList")).andExpect(status().isOk())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].name", is("Mi TV New")))
+                .andExpect(jsonPath("$[1].name", is("Nexon")));
+
     }
 }
