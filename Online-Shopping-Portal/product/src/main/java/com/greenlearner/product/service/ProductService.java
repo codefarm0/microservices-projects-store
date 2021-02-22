@@ -1,16 +1,18 @@
 package com.greenlearner.product.service;
 
 import com.greenlearner.product.dto.Product;
+import com.greenlearner.product.dto.ProductResponse;
 import com.greenlearner.product.exception.CurrencyNotValidException;
 import com.greenlearner.product.exception.OfferNotValidException;
+import com.greenlearner.product.exception.ProductNotFoundException;
 import com.greenlearner.product.repository.ProductRepository;
 import com.greenlearner.product.service.config.ProductConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author - GreenLearner(https://www.youtube.com/c/greenlearner)
@@ -24,45 +26,65 @@ public class ProductService {
 
     private ProductConfiguration productConfiguration;
 
-    public String addProduct(Product product) {
-        log.info("[info]adding product");
+    public ProductResponse addProduct(Product product) {
+        log.info("adding product");
         if (product.getPrice() == 0 && product.getDiscount() > 0) {
-            log.debug("[debug]something is wrong with product price");
-            log.warn("[warn]something is wrong with product price");
             throw new OfferNotValidException("No discount is allowed at 0 product price");
         }
 
-        if(!productConfiguration.getCurrencies().contains(product.getCurrency().toUpperCase())){
-            throw new CurrencyNotValidException("Invalid Currency. Valid currencies- "+ productConfiguration.getCurrencies());
+        if (!productConfiguration.getCurrencies().contains(product.getCurrency().toUpperCase())) {
+            throw new CurrencyNotValidException("Invalid Currency. Valid currencies- " + productConfiguration.getCurrencies());
         }
 
-        productRepository.save(product);
+        Product savedProduct = productRepository.save(product);
 
-        return "success";
+        return new ProductResponse("success",savedProduct.getName() + "added into the system");
     }
 
     public List<Product> listAllProducts() {
-        return productRepository.findAll();
+        List<Product> products = productRepository.findAll();
+        if (products.isEmpty()) {
+            throw new ProductNotFoundException("No product found for the given query");
+        }
+        return products;
     }
 
     public List<Product> productCategoryList(String category) {
 
-        return productRepository.findByCategory(category);
+        List<Product> productsByCategory = productRepository.findByCategory(category);
+        if (productsByCategory.isEmpty()) {
+            throw new ProductNotFoundException("No product found for the category-" + category);
+        }
+        return productsByCategory;
     }
 
     public Product productById(String id) {
-        return productRepository.findById(id).get();
+        return productRepository
+                .findById(id)
+                .orElseThrow(() -> new ProductNotFoundException("Product not found for id - " + id));
+
     }
 
-    public String updateProduct(Product product) {
+    public ProductResponse updateProduct(Product product) {
 
-        productRepository.save(product);
+        Optional<Product> prod = productRepository.findById(product.getId());
+        if (!prod.isPresent()) {
+            return new ProductResponse("FAILED", "Product to be updated not found in the system");
+        }
 
-        return "product updated ";
+        Product updatedProduct = productRepository.save(product);
+
+        return new ProductResponse("SUCCESS", "Product Updated - " + updatedProduct.getName());
     }
 
-    public String deleteProductById(String id) {
+    public ProductResponse deleteProductById(String id) {
+        Optional<Product> prod = productRepository.findById(id);
+        if (!prod.isPresent()) {
+            return new ProductResponse("FAILED", "Product to be deleted not found in the system");
+        }
+
         productRepository.deleteById(id);
-        return "product deleted";
+
+        return new ProductResponse("SUCCESS", "Product Deleted");
     }
 }
