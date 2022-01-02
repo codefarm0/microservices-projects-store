@@ -1,0 +1,12 @@
+server:
+  port: 8081
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_management
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: root
+    password: tiger
