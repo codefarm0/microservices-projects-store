@@ -18,10 +18,6 @@ public class UserService {
     }
 
     public User registerUser(User user) {
-
-        if(user.getMobile() == null && user.getEmail() == null){
-            throw new UserDataValidationException("(email or mobile) field is mandatory.");
-        }
         user.setInsertDate(new Date());
         user.setId(UUID.randomUUID().toString());
 
