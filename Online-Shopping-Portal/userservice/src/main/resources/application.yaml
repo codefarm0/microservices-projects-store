@@ -5,8 +5,26 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+#    properties:
+#      javax:
+#        persistence:
+#          validation:
+#            mode: none
   datasource:
     url: jdbc:mysql://localhost:3306/user_management
     driverClassName: com.mysql.cj.jdbc.Driver
     username: root
     password: tiger
+
+
+
+password:
+  hashing:
+    algo:
+      argon2:
+        type: 1
+        saltLength: 16
+        hashLength: 32
+        iterations: 4
+        memory: 65586
+        parrallelism: 2
