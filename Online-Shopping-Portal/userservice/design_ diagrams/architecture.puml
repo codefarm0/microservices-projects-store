@@ -1,0 +1,105 @@
+@startuml
+
+!define table(x) class x << (T,#9F1111) >>
+!define primary_key(x) <u>x</u>
+allow_mixing
+
+
+actor clients  #green
+database MySQL  {
+table(users) #grey{
+id,
+name,
+email,
+mobile,
+...
+}
+table(profile){
+id,
+user_id,
+image,
+address_id,
+...
+}
+table(address){
+id,
+profile_id,
+line1,
+line2,
+city,
+...
+}
+table(verification){
+id,
+user_id
+otp,
+source,
+...
+}
+table(user_status){
+id,
+user_id,
+mobile,
+email
+...
+}
+}
+profile "1" -- "many" address  : may contain
+users "1" -> "1" profile : to
+users "1" -> "1" user_status
+package "com.gl.userservice" {
+class UserController #grey{
+- userService
+createUser() : /user/register [POST]
+updateUser() : /user/update [PUT]
+deleteUser() : /user/delete [DELETE]
+findByEmail(): /user?email=<id> [GET]
+findByMobile(): /user?mob=<mob no> [GET]
+}
+class ProfileController{
+- profileService
+}
+class UserVerificationController{
+- userVerificationService
+}
+class UserService #grey{
+- userRepository
+- profileService
+- userVerificationService
+createUser()
+moreMethods()..
+}
+class ProfileService{
+- profileRepository
+}
+class UserVerificationService{
+- userVerificationRepository
+}
+interface UserRepository #grey{
+}
+interface ProfileRepository{
+}
+interface UserVerificationRepository{
+}
+class UserServiceSecurityConfiguration{}
+}
+clients --> UserServiceSecurityConfiguration : call >
+UserServiceSecurityConfiguration --> UserController
+UserController *-- UserService
+UserService *--- UserRepository
+UserRepository --> users
+
+UserServiceSecurityConfiguration --> UserVerificationController
+UserVerificationController *--- UserVerificationService
+UserVerificationService *-- UserVerificationRepository
+UserVerificationRepository --> verification
+UserVerificationRepository --> user_status
+
+UserServiceSecurityConfiguration --> ProfileController
+ProfileController *--- ProfileService
+ProfileService *-- ProfileRepository
+ProfileRepository --> profile : updates
+
+UserService *-- ProfileService
+UserService *-- UserVerificationService
+@enduml

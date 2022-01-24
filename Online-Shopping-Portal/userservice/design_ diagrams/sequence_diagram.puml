@@ -1,0 +1,20 @@
+@startuml
+'allow_mixing
+
+actor client #green
+box User Service(https://host:port/user/register [POST])
+client -> UserController : createUserRequest \n "/user/register" \n Request Body - {}
+
+UserController -> UserService #blue : createUserRequest(user)
+
+UserService -> UserService : validate user details
+UserService -> UserRepository : persist data in DB
+
+database mysql 
+UserRepository -> mysql : save data in DB
+mysql -> UserRepository : response(pass/fail)
+UserRepository -> UserService : response of saved user details \n (sensitive fields masked)
+UserService -> UserController : response of saved user details \n (sensitive fields masked)
+
+UserController -> client : response of saved user details \n (sensitive fields masked)
+@enduml

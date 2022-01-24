@@ -1,0 +1,15 @@
+@startmindmap
+
+* Endpoints
+** Open
+*** /user/register [POST]
+*** /user/findByEmail?email=<>
+*** /user/findByMobile?mob=<>
+*** /user/login
+** Secure
+*** /user/update
+*** /user/delete
+*** /profile/create
+*** /profile/update
+*** /profile/delete
+@endmindmap
