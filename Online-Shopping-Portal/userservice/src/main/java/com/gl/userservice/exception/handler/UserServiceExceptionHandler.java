@@ -1,5 +1,6 @@
 package com.gl.userservice.exception.handler;
 
+import com.gl.userservice.exception.UserNotFoundException;
 import com.gl.userservice.model.ApiError;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -53,6 +54,16 @@ public class UserServiceExceptionHandler extends ResponseEntityExceptionHandler 
         ApiError apiError = new ApiError();
         apiError.setErrors(errors);
         apiError.setStatus(HttpStatus.BAD_REQUEST);
+        apiError.setPath(request.getRequest().getRequestURI());
+        return new ResponseEntity<>(
+                apiError, new HttpHeaders(), apiError.getStatus());
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<Object> userNotFoundException(UserNotFoundException ex, ServletWebRequest request){
+        ApiError apiError = new ApiError();
+        apiError.setErrors(List.of(ex.getMessage()));
+        apiError.setStatus(HttpStatus.NOT_FOUND);
         apiError.setPath(request.getRequest().getRequestURI());
         return new ResponseEntity<>(
                 apiError, new HttpHeaders(), apiError.getStatus());

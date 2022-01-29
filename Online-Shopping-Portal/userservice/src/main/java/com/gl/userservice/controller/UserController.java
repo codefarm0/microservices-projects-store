@@ -2,9 +2,7 @@ package com.gl.userservice.controller;
 
 import com.gl.userservice.model.User;
 import com.gl.userservice.service.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -22,5 +20,10 @@ public class UserController {
 
         return userService.registerUser(user);
 
+    }
+
+    @GetMapping("/user/find")
+    public User findByEmail(@RequestParam String email){
+        return userService.findByEmail(email);
     }
 }

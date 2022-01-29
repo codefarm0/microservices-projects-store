@@ -1,5 +1,6 @@
 package com.gl.userservice.service;
 
+import com.gl.userservice.exception.UserNotFoundException;
 import com.gl.userservice.model.User;
 import com.gl.userservice.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -30,7 +31,12 @@ public class UserService {
         return savedUser;
     }
 
-    private String securePassword(String password) {
-        return null;
+    public User findByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        if(user == null){
+            throw new UserNotFoundException("User not found for mail id - " + email);
+        }
+        user.setPassword("****");
+        return user;
     }
 }

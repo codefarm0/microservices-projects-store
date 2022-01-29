@@ -1,6 +1,6 @@
 package com.gl.userservice.service;
 
-import com.gl.userservice.controller.config.PasswordConfig;
+import com.gl.userservice.config.PasswordConfig;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.stereotype.Service;

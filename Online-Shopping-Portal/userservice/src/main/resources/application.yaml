@@ -2,14 +2,18 @@ server:
   port: 8081
 
 spring:
+  security:
+    user:
+      name: green
+      password: learner
   jpa:
     hibernate:
       ddl-auto: none
-#    properties:
-#      javax:
-#        persistence:
-#          validation:
-#            mode: none
+    properties:
+      javax:
+        persistence:
+          validation:
+            mode: none
   datasource:
     url: jdbc:mysql://localhost:3306/user_management
     driverClassName: com.mysql.cj.jdbc.Driver
