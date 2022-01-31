@@ -1,0 +1,33 @@
+@startuml
+allow_mixing
+actor client
+
+interface Authentication{}
+interface SecurityContext{}
+interface AuthenticationManager{}
+interface AuthenticationProvider{}
+
+
+class AuthenticationFilter{}
+
+package "one of many implementations" #grey{
+class DaoAuthenticationProvider
+interface UserDetailsService{}
+interface PasswordEncoder{}
+}
+client <-> AuthenticationFilter
+
+Authentication <-- AuthenticationFilter :has
+
+AuthenticationFilter --> SecurityContext : has
+
+AuthenticationFilter -> AuthenticationManager : has
+
+AuthenticationManager -> AuthenticationProvider : forwards to
+
+AuthenticationProvider <-- DaoAuthenticationProvider : implements
+DaoAuthenticationProvider --> UserDetailsService : has
+
+DaoAuthenticationProvider --> PasswordEncoder : has
+
+@enduml
