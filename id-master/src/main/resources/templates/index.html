@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Unique ID Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Unique ID Generator</h1>
+
+    <div class="approach-section">
+        <h2>UUIDv7</h2>
+        <button class="action-btn" onclick="fetchNewId('uuidv7')">Get New ID (UUIDv7)</button>
+        <button class="action-btn" onclick="fetchLast5Ids('uuidv7')">Last 5 IDs (UUIDv7)</button>
+        <div id="uuidv7-ids" class="id-display"></div>
+    </div>
+
+    <div class="approach-section">
+        <h2>Snowflake</h2>
+        <button class="action-btn" onclick="fetchNewId('snowflake')">Get New ID (Snowflake)</button>
+        <button class="action-btn" onclick="fetchLast5Ids('snowflake')">Last 5 IDs (Snowflake)</button>
+        <div id="snowflake-ids" class="id-display"></div>
+    </div>
+</div>
+
+<script>
+        function fetchNewId(approach) {
+            fetch(`/api/v1/ids/${approach}/newId`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById(`${approach}-ids`).innerHTML = `<p>New ID: <strong>${data.id}</strong></p>`;
+                });
+        }
+
+        function fetchLast5Ids(approach) {
+            fetch(`/api/v1/ids/${approach}/last5Ids`)
+                .then(response => response.json())
+                .then(data => {
+                    if (Array.isArray(data)) {
+                        const idsDiv = document.getElementById(`${approach}-ids`);
+                        idsDiv.innerHTML = `<h3>Last 5 IDs (${approach}):</h3>`;
+                        data.forEach(entry => {
+                            idsDiv.innerHTML += `<p><strong>ID:</strong> ${entry.id}, <strong>Generated at:</strong> ${new Date(entry.timestamp).toLocaleString()}</p>`;
+                        });
+                    } else {
+                        console.error('Expected an array object but got:', data);
+                    }
+                })
+                .catch(error => console.error('Error fetching last 5 IDs:', error));
+        }
+    </script>
+</body>
+</html>
